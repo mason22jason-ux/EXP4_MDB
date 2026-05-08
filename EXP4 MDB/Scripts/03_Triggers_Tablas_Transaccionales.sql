@@ -10,6 +10,12 @@
    TABLAS: Pedidos y Detalle_Pedido
    ========================================================= */
 
+/* =========================================================
+   EXPERIENCIA 4: TRAZABILIDAD DE LOS DATOS
+   SCRIPT 03: TRIGGERS DE TABLAS TRANSACCIONALES
+   TABLAS: Pedidos y Detalle_Pedido
+   ========================================================= */
+
 USE SistemaVentas_G5;
 GO
 
@@ -198,10 +204,10 @@ BEGIN
                     ELSE ''
                 END,
                 CASE 
-                    WHEN ISNULL(CONVERT(NVARCHAR(MAX), d.Precio_Unitario), N'<<NULL>>') 
-                       <> ISNULL(CONVERT(NVARCHAR(MAX), i.Precio_Unitario), N'<<NULL>>')
-                    THEN CONCAT('Precio_Unitario: ', COALESCE(CONVERT(NVARCHAR(MAX), d.Precio_Unitario), N'NULL'), 
-                                ' -> ', COALESCE(CONVERT(NVARCHAR(MAX), i.Precio_Unitario), N'NULL'), '; ')
+                    WHEN ISNULL(CONVERT(NVARCHAR(MAX), d.Precio_Unitario_Historico), N'<<NULL>>') 
+                       <> ISNULL(CONVERT(NVARCHAR(MAX), i.Precio_Unitario_Historico), N'<<NULL>>')
+                    THEN CONCAT('Precio_Unitario_Historico: ', COALESCE(CONVERT(NVARCHAR(MAX), d.Precio_Unitario_Historico), N'NULL'), 
+                                ' -> ', COALESCE(CONVERT(NVARCHAR(MAX), i.Precio_Unitario_Historico), N'NULL'), '; ')
                     ELSE ''
                 END,
                 CASE 
@@ -271,7 +277,7 @@ BEGIN
                 'ID_Pedido: ', COALESCE(CONVERT(NVARCHAR(MAX), d.ID_Pedido), N'NULL'), '; ',
                 'ID_Producto: ', COALESCE(CONVERT(NVARCHAR(MAX), d.ID_Producto), N'NULL'), '; ',
                 'Cantidad: ', COALESCE(CONVERT(NVARCHAR(MAX), d.Cantidad), N'NULL'), '; ',
-                'Precio_Unitario: ', COALESCE(CONVERT(NVARCHAR(MAX), d.Precio_Unitario), N'NULL'), '; ',
+                'Precio_Unitario_Historico: ', COALESCE(CONVERT(NVARCHAR(MAX), d.Precio_Unitario_Historico), N'NULL'), '; ',
                 'Subtotal: ', COALESCE(CONVERT(NVARCHAR(MAX), d.Subtotal), N'NULL')
             ),
             HOST_NAME(),
